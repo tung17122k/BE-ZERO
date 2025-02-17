@@ -14,7 +14,8 @@ const hostname = process.env.HOST_NAME;
 // config template engine
 // config static file
 configViewEngine(app);
-app.use('/v1', webRoutes)
+app.use('/', webRoutes)
+// app.use('/v1', webRoutes)
 
 
 
