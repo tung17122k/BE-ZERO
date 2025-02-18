@@ -1,5 +1,7 @@
 require('dotenv').config()
 const express = require('express')
+const connection = require('./config/database')
+
 
 
 const configViewEngine = require("./config/viewEngine")
@@ -17,6 +19,14 @@ configViewEngine(app);
 app.use('/v1', webRoutes)
 // app.use('/v1', webRoutes)
 
+
+// test connection
+connection.query('select * from Users u',
+    function (err, results, fields) {
+        console.log(">>>>check results", results);
+
+    }
+)
 
 
 app.listen(port, hostname, () => {
