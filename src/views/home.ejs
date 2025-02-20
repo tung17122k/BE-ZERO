@@ -4,29 +4,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <title>Home Page</title>
 </head>
 
 <body>
-    <div class="topnav">
-        <a class="active" href="#home">Home</a>
-        <a href="#news">News</a>
-        <a href="#contact">Contact</a>
-        <a href="#about">About</a>
+    <div class="topnav" style="margin-bottom: 20px ;">
+        <a class="active" href="/v1">Home</a>
+        <a href="/v1/create">Create-user</a>
     </div>
-    <div class="form">
-        <form action="/v1/create-user" method="POST">
-            <fieldset>
-                <legend>Users:</legend>
-                <label>Email:</label>
-                <input type="email" id="email" name="email"><br><br>
-                <label>Name</label>
-                <input type="text" id="birthday" name="username"><br><br>
-                <label>City</label>
-                <input type="text" id="birthday" name="city"><br><br>
-                <button type="submit">Save</button>
-            </fieldset>
-        </form>
+    <div class="w3-container">
+        <h2>Table User</h2>
+
+        <table class="w3-table-all w3-hoverable">
+            <thead>
+                <tr class="w3-light-grey">
+                    <th>Id</th>
+                    <th>Email</th>
+                    <th>Name</th>
+                    <th>City</th>
+                </tr>
+            </thead>
+            <tr>
+                <td>Jill</td>
+                <td>Smith</td>
+                <td>50</td>
+                <td>50</td>
+            </tr>
+
+        </table>
     </div>
 </body>
 
