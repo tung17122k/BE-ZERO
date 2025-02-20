@@ -23,14 +23,33 @@
                     <th>Email</th>
                     <th>Name</th>
                     <th>City</th>
+                    <th>Action</th>
                 </tr>
             </thead>
-            <tr>
-                <td>Jill</td>
-                <td>Smith</td>
-                <td>50</td>
-                <td>50</td>
-            </tr>
+
+
+            <% data.forEach(function(user) { %>
+                <tr>
+                    <td>
+                        <%= user.id %>
+                    </td>
+                    <td>
+                        <%= user.email %>
+                    </td>
+                    <td>
+                        <%= user.name %>
+                    </td>
+                    <td>
+                        <%= user.city %>
+                    </td>
+                    <td>
+                        <button>edit</button>
+                        <button>delete</button>
+                    </td>
+                </tr>
+                <% }) %>
+
+
 
         </table>
     </div>
