@@ -13,15 +13,17 @@
         <a href="/v1/create">Create-user</a>
     </div>
     <div class="form">
-        <form action="/v1/create-user" method="POST">
+        <form action="/v1/update-user" method="POST">
             <fieldset>
                 <legend>Update a user</legend>
+                <label class="d-none">Id:</label>
+                <input type="hidden" name="userId" value="<%= user.id %>"><br><br>
                 <label>Email:</label>
-                <input type="email" id="email" name="email" value="<%= user.email %>"><br><br>
+                <input type="email" name="email" value="<%= user.email %>"><br><br>
                 <label>Name</label>
-                <input type="text" id="birthday" name="username" value="<%= user.name %>"><br><br>
+                <input type="text" name="username" value="<%= user.name %>"><br><br>
                 <label>City</label>
-                <input type="text" id="birthday" name="city" value="<%= user.city %>"><br><br>
+                <input type="text" name="city" value="<%= user.city %>"><br><br>
                 <button type="submit">Save</button>
             </fieldset>
         </form>

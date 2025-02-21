@@ -1,7 +1,7 @@
 const connection = require('../config/database')
 const express = require('express')
 const app = express()
-const { getAllUser, getUserById } = require("../services/CRUDServices")
+const { getAllUser, getUserById, updateUserById } = require("../services/CRUDServices")
 
 
 const getHomepage = async (req, res) => {
@@ -16,12 +16,8 @@ const getViews = (req, res) => {
 }
 
 const postCreateUser = async (req, res) => {
-
-
     // console.log(email, username, city);
     let { email, username, city } = req.body
-
-
     let [results, fields] = await connection.query(`INSERT INTO Users (email, name, city) VALUES(?,?,?)`, [email, username, city],);
     // console.log("check results", results);
     res.send("create user success");
@@ -38,11 +34,20 @@ const getUpdatePage = async (req, res) => {
     res.render('edit.ejs', { user })
 }
 
+const postUpdateUser = async (req, res) => {
+    let { email, username, city } = req.body;
+    let userId = req.body.userId;
+    await updateUserById(email, city, username, userId)
+    // res.send("update user success");
+    res.redirect("/v1")
+}
+
 
 module.exports = {
     getHomepage,
     getViews,
     postCreateUser,
     getCreatePage,
-    getUpdatePage
+    getUpdatePage,
+    postUpdateUser
 }

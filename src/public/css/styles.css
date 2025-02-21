@@ -53,3 +53,7 @@ button{
     border-radius: 5px;
     cursor: pointer;
 }
+
+.d-none{
+  display: none;
+}
