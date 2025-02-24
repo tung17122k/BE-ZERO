@@ -4,6 +4,8 @@ const connection = require('./config/database')
 
 
 
+
+
 const configViewEngine = require("./config/viewEngine")
 const webRoutes = require('./routes/web')
 
@@ -20,8 +22,12 @@ app.use(express.urlencoded({ extended: true })) // for form data
 // config template engine
 // config static file
 configViewEngine(app);
-app.use('/v1', webRoutes)
+app.use('/', webRoutes)
 // app.use('/v1', webRoutes)
+
+// test connection
+connection()
+
 
 
 app.listen(port, hostname, () => {
