@@ -1,35 +1,52 @@
-require('dotenv').config()
-const express = require('express')
-const connection = require('./config/database')
+require('dotenv').config();
+const express = require('express');
+const connection = require('./config/database');
+const mongoose = require('mongoose');
 
 
 
 
 
-const configViewEngine = require("./config/viewEngine")
-const webRoutes = require('./routes/web')
+const configViewEngine = require("./config/viewEngine");
+const webRoutes = require('./routes/web');
 
-const app = express()
+const app = express();
 const port = process.env.PORT || 8888;
 const hostname = process.env.HOST_NAME;
 
 
 // config req.body
-app.use(express.json()) // for json
-app.use(express.urlencoded({ extended: true })) // for form data
+app.use(express.json()); // for json
+app.use(express.urlencoded({ extended: true })); // for form data
 
 
 // config template engine
 // config static file
 configViewEngine(app);
-app.use('/', webRoutes)
+app.use('/', webRoutes);
 // app.use('/v1', webRoutes)
 
-// test connection
-connection()
-
-
-
-app.listen(port, hostname, () => {
-    console.log(`Example app listening on port ${port}`)
+const kittySchema = new mongoose.Schema({
+    name: String
 })
+
+const Kitten = mongoose.model("Kitten", kittySchema);
+
+const cat = new Kitten({ name: 'Tung' });
+
+cat.save();
+
+(async () => {
+    try {
+        // test connection
+        await connection();
+        app.listen(port, hostname, () => {
+            console.log(`Backend app listening on port ${port}`)
+        })
+    } catch (error) {
+        console.log(">>>> err connect to db", error);
+    }
+})()
+
+
+
