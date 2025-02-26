@@ -1,7 +1,7 @@
 require('dotenv').config();
 const express = require('express');
 const connection = require('./config/database');
-const Kitten = require('./models/Kitten');
+
 
 
 const configViewEngine = require("./config/viewEngine");
@@ -23,8 +23,7 @@ configViewEngine(app);
 app.use('/', webRoutes);
 // app.use('/v1', webRoutes)
 
-const cat = new Kitten({ name: 'Tung' });
-cat.save();
+
 
 (async () => {
     try {

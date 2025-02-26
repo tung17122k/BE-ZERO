@@ -10,8 +10,8 @@
 
 <body>
     <div class="topnav" style="margin-bottom: 20px ;">
-        <a class="active" href="/v1">Home</a>
-        <a href="/v1/create">Create-user</a>
+        <a class="active" href="/">Home</a>
+        <a href="/create">Create-user</a>
     </div>
     <div class="w3-container">
         <h2>Table User</h2>
@@ -43,8 +43,8 @@
                         <%= user.city %>
                     </td>
                     <td>
-                        <a href='/v1/update/<%= user.id %>'>edit</a>
-                        <form action="/v1/delete-user/<%= user.id %>" method="POST"><button>delete</button></form>
+                        <a href='/update/<%= user.id %>'>edit</a>
+                        <form action="/delete-user/<%= user.id %>" method="POST"><button>delete</button></form>
                     </td>
                 </tr>
                 <% }) %>
