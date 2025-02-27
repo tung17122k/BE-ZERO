@@ -3,9 +3,8 @@ const User = require('../models/user')
 
 
 const getHomepage = async (req, res) => {
-    let results = [];
+    let results = await User.find({});
     // console.log('results', results);
-
     return res.render('home.ejs', { data: results })
 }
 
@@ -24,12 +23,27 @@ const postCreateUser = async (req, res) => {
     res.send("create user success");
 }
 
+const getUpdatePage = async (req, res) => {
+    const userId = req.params.id;
+    let user = await User.findById(userId).exec();
+    res.render('edit.ejs', { user })
+}
+
+const postUpdateUser = async (req, res) => {
+    let { email, username, city } = req.body;
+    let userId = req.body.userId;
+
+    await User.updateOne({ _id: userId }, { email, name: username, city });
+    res.redirect('/')
+}
 
 
 module.exports = {
     getHomepage,
     postCreateUser,
-    getCreatePage
+    getCreatePage,
+    getUpdatePage,
+    postUpdateUser
 }
 
 
