@@ -6,6 +6,7 @@ const connection = require('./config/database');
 
 const configViewEngine = require("./config/viewEngine");
 const webRoutes = require('./routes/web');
+const apiRoutes = require('./routes/api');
 
 const app = express();
 const port = process.env.PORT || 8888;
@@ -21,6 +22,7 @@ app.use(express.urlencoded({ extended: true })); // for form data
 // config static file
 configViewEngine(app);
 app.use('/', webRoutes);
+app.use('/v1/api/', apiRoutes);
 // app.use('/v1', webRoutes)
 
 
