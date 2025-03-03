@@ -1,7 +1,7 @@
 require('dotenv').config();
 const express = require('express');
 const connection = require('./config/database');
-
+const fileUpload = require('express-fileupload');
 
 
 const configViewEngine = require("./config/viewEngine");
@@ -11,6 +11,9 @@ const apiRoutes = require('./routes/api');
 const app = express();
 const port = process.env.PORT || 8888;
 const hostname = process.env.HOST_NAME;
+
+// default options config file upload
+app.use(fileUpload());
 
 
 // config req.body
@@ -24,7 +27,6 @@ configViewEngine(app);
 app.use('/', webRoutes);
 app.use('/v1/api/', apiRoutes);
 // app.use('/v1', webRoutes)
-
 
 
 (async () => {
