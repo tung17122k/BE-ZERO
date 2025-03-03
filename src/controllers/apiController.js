@@ -34,8 +34,6 @@ const postUploadSinglefileApi = async (req, res) => {
         return res.status(400).send('No files were uploaded.');
     }
     let result = await uploadSingle(req.files.image);
-    // console.log("req.files", req.files);
-    // console.log(">>>check result", result);
 
     return res.send("ok upload file")
 }
