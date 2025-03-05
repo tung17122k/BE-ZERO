@@ -1,6 +1,6 @@
 
-
 const Customer = require('../models/Customer');
+const aqp = require('api-query-params');
 
 
 const createCustomerService = async (customerData) => {
@@ -24,11 +24,18 @@ const createArrayCustomerService = async (arr) => {
     }
 }
 
-const getAllCustomerService = async (limit, page) => {
+const getAllCustomerService = async (limit, page, query) => {
+
+    const { filter } = aqp(query);
+    delete filter.page;
+    if (filter.name && typeof filter.name === "string") {
+        filter.name = new RegExp(filter.name, "i");
+    }
+    console.log(">>>check filter name", filter);
     try {
         let result = [];
         if (limit && page) {
-            result = await Customer.find({}).limit(limit).skip(parseInt((page - 1) * limit)).exec();
+            result = await Customer.find(filter).limit(limit).skip(parseInt((page - 1) * limit)).exec();
         } else {
             result = await Customer.find({});
         }
