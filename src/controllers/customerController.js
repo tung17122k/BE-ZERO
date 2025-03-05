@@ -35,8 +35,15 @@ module.exports = {
         }
 
     },
-    getCreateCustomer: async (req, res) => {
-        let customers = await getAllCustomerService();
+    getAllCustomer: async (req, res) => {
+        const { limit, page } = req.query;
+        let customers = [];
+        if (limit && page) {
+            customers = await getAllCustomerService(limit, page);
+        } else {
+            customers = await getAllCustomerService();
+        }
+
         if (customers) {
             return res.status(200).json({
                 data: customers,
