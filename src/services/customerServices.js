@@ -31,7 +31,7 @@ const getAllCustomerService = async (limit, page, query) => {
     if (filter.name && typeof filter.name === "string") {
         filter.name = new RegExp(filter.name, "i");
     }
-    console.log(">>>check filter name", filter);
+
     try {
         let result = [];
         if (limit && page) {

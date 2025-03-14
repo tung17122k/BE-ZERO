@@ -1,4 +1,5 @@
 const Project = require("../models/project");
+const aqp = require('api-query-params');
 
 
 const createProjectService = async (data) => {
@@ -17,7 +18,6 @@ const createProjectService = async (data) => {
                 const isUserExists = myProject.usersInfor.some(existingUser =>
                     existingUser.toString() === userId
                 );
-
                 // Chỉ thêm user nếu chưa tồn tại
                 if (!isUserExists) {
                     myProject.usersInfor.push(userId);
@@ -33,6 +33,27 @@ const createProjectService = async (data) => {
         return null
     }
 }
+
+const getAllProjectService = async (queryString) => {
+    try {
+        let result = [];
+        const page = queryString.page;
+        const { filter, limit, population } = aqp(queryString);
+
+
+        delete filter.page;
+        let offset = (page - 1) * limit;
+        if (limit && page) {
+            result = await Project.find(filter).populate(population).limit(limit).skip(parseInt(offset)).exec();
+        } else {
+            result = await Project.find({});
+        }
+        return result
+    } catch (error) {
+        console.log(error);
+    }
+}
+
 module.exports = {
-    createProjectService
+    createProjectService, getAllProjectService
 }

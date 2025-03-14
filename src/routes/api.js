@@ -4,7 +4,7 @@ const { getUsersAPI, postCreateUser, putUpdateUser, deleteUserApi, postUploadSin
 
 const { postCreateCustomer, postCreateArrayCustomer, getAllCustomer, putUpdateCustomer, deleteACustomer, deleteArrayCustomer } = require('../controllers/customerController')
 
-const { postCreateProject } = require('../controllers/projectController')
+const { postCreateProject, getAllProject } = require('../controllers/projectController')
 
 const routerAPI = express.Router()
 
@@ -37,21 +37,18 @@ routerAPI.delete("/customers", deleteACustomer)
 routerAPI.delete("/customers-many", deleteArrayCustomer)
 
 routerAPI.get("/info", (req, res) => {
-    console.log(">>>check req.query", req.query);
-
     return res.status(200).json({
         data: req.query
     })
 })
 
 routerAPI.get('/info/:name/:address', (req, res) => {
-    console.log(">>>check req.query", req.params);
-
     return res.status(200).json({
         data: req.params
     })
 })
 
 routerAPI.post("/projects", postCreateProject)
+routerAPI.get("/projects", getAllProject)
 
 module.exports = routerAPI
