@@ -4,6 +4,8 @@ const { getUsersAPI, postCreateUser, putUpdateUser, deleteUserApi, postUploadSin
 
 const { postCreateCustomer, postCreateArrayCustomer, getAllCustomer, putUpdateCustomer, deleteACustomer, deleteArrayCustomer } = require('../controllers/customerController')
 
+const { postCreateProject } = require('../controllers/projectController')
+
 const routerAPI = express.Router()
 
 routerAPI.get("/", (req, res) => {
@@ -49,5 +51,7 @@ routerAPI.get('/info/:name/:address', (req, res) => {
         data: req.params
     })
 })
+
+routerAPI.post("/projects", postCreateProject)
 
 module.exports = routerAPI
