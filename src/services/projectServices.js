@@ -5,10 +5,9 @@ const aqp = require('api-query-params');
 const createProjectService = async (data) => {
     try {
         if (data.type === 'EMPTY-PROJECT') {
-            let result = await Project.create(projectData);
+            let result = await Project.create(data);
             return result;
         }
-
         if (data.type === "ADD-USERS") {
             let myProject = await Project.findById(data.projectId).exec();
 
@@ -23,8 +22,6 @@ const createProjectService = async (data) => {
                     myProject.usersInfor.push(userId);
                 }
             }
-
-
             let newResult = await myProject.save();
             console.log(newResult);
             return newResult
@@ -54,6 +51,25 @@ const getAllProjectService = async (queryString) => {
     }
 }
 
+const updateProjectService = async (data) => {
+    let { id, name, endDate, description } = data;
+    try {
+        let result = await Project.updateOne({ _id: id }, { name, endDate, description });
+        return result
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+const deleteProjectService = async (id) => {
+    try {
+        let result = await Project.deleteById({ _id: id });
+        return result
+    } catch (error) {
+        console.log(error);
+    }
+}
+
 module.exports = {
-    createProjectService, getAllProjectService
+    createProjectService, getAllProjectService, updateProjectService, deleteProjectService
 }

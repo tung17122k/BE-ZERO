@@ -4,7 +4,7 @@ const { getUsersAPI, postCreateUser, putUpdateUser, deleteUserApi, postUploadSin
 
 const { postCreateCustomer, postCreateArrayCustomer, getAllCustomer, putUpdateCustomer, deleteACustomer, deleteArrayCustomer } = require('../controllers/customerController')
 
-const { postCreateProject, getAllProject } = require('../controllers/projectController')
+const { postCreateProject, getAllProject, putUpdateProject, deleteAProject } = require('../controllers/projectController')
 
 const routerAPI = express.Router()
 
@@ -50,5 +50,7 @@ routerAPI.get('/info/:name/:address', (req, res) => {
 
 routerAPI.post("/projects", postCreateProject)
 routerAPI.get("/projects", getAllProject)
+routerAPI.put("/projects", putUpdateProject)
+routerAPI.delete("/projects", deleteAProject)
 
 module.exports = routerAPI
