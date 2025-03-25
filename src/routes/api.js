@@ -6,6 +6,9 @@ const { postCreateCustomer, postCreateArrayCustomer, getAllCustomer, putUpdateCu
 
 const { postCreateProject, getAllProject, putUpdateProject, deleteAProject } = require('../controllers/projectController')
 
+
+const { postCreateTask, getAllTask, putUpdateTask, deleteATask } = require('../controllers/taskController')
+
 const routerAPI = express.Router()
 
 routerAPI.get("/", (req, res) => {
@@ -52,5 +55,11 @@ routerAPI.post("/projects", postCreateProject)
 routerAPI.get("/projects", getAllProject)
 routerAPI.put("/projects", putUpdateProject)
 routerAPI.delete("/projects", deleteAProject)
+
+routerAPI.post("/tasks", postCreateTask)
+routerAPI.get("/tasks", getAllTask)
+routerAPI.put("/tasks", putUpdateTask)
+routerAPI.delete("/tasks", deleteATask)
+
 
 module.exports = routerAPI
