@@ -36,7 +36,6 @@ const getAllTaskService = async (queryString) => {
 
 const updateTaskService = async (data) => {
     console.log("data", data);
-
     let result = await Task.updateOne({ _id: data.id }, { ...data });
     return result
 }

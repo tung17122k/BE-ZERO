@@ -26,6 +26,25 @@ const createProjectService = async (data) => {
             console.log(newResult);
             return newResult
         }
+        if (data.type === "ADD-TASKS") {
+            let myProject = await Project.findById(data.projectId).exec();
+
+            // Duyệt qua từng task trong mảng taskArr
+            for (const taskId of data.taskArr) {
+
+                // Kiểm tra user đã tồn tại trong project chưa
+                const isTaskExists = myProject.tasks.some(existingUser =>
+                    existingUser.toString() === taskId
+                );
+                // Chỉ thêm user nếu chưa tồn tại
+                if (!isTaskExists) {
+                    myProject.tasks.push(taskId);
+                }
+            }
+            let newResult = await myProject.save();
+            console.log(newResult);
+            return newResult
+        }
     } catch (error) {
         return null
     }
