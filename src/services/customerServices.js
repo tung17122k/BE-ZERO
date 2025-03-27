@@ -1,5 +1,5 @@
 
-const Customer = require('../models/Customer');
+const Customer = require('../models/customer');
 const aqp = require('api-query-params');
 
 
